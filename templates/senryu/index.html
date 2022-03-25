@@ -1,0 +1,39 @@
+{% extends '../common/base/default.html' %}
+{% block title %}川柳-{{ block.super }}{% endblock %}
+{% block description %}川柳トップ--{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div><img src="/static/donkey.jpg" with="50" height="50"></div>
+            name: {{ name }}, age: {{ age }}
+            <div><a href="{% url "senryu:regist" %}">投稿する</a></div>
+        </div>
+        {% if pages %}
+        <ul>
+            {% for obj in pages %}
+            <div class="form-group row">
+            <div class="col-sm-12">
+                {{ obj.ku1 }}　{{ obj.ku2 }}　{{ obj.ku3 }}{% if obj.name %}　by　{{ obj.name }}　さん{% else %}　by　詠み人知らず　さん</div>{% endif %}
+            </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-sm-1">
+                コメント：
+            </div>
+            <div class="col-sm-11">
+                {{ obj.comment|linebreaksbr }}
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>川柳データがありません</p>
+        {% endif %}
+
+        {% include "../common/parts/pagination.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

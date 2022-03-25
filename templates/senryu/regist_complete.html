@@ -1,0 +1,14 @@
+{% extends '../common/base/default.html' %}
+{% block title %}川柳登録完了-{{ block.super }}{% endblock %}
+{% block description %}川柳登録完了-{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>川柳投稿完了</h2>
+            <div class="alert alert-success" role="alert">川柳投稿が完了しました</div>
+        </div>
+    </div>
+    <a href='{% url "senryu:index" %}' class='btn btn-outline-secondary'>川柳トップへ戻る</a>
+</div>
+{% endblock %}
