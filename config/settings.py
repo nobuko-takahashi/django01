@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'senryu.apps.SenryuConfig',
     'hello.apps.HelloConfig',
     'top.apps.TopConfig',
+    'members',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,18 @@
+{% extends '../common/base/default.html' %}
+{% block title %}ログイン-{{ block.super }}{% endblock %}
+{% block description %}ログイン-{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>ログイン</h3>
+            {% if err_msg %}<div class="alert alert-danger" role="alert">{{ err_msg }}</div>{% endif %}
+            <form class="" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" name="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
