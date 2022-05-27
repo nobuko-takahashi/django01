@@ -29,13 +29,3 @@ https://www.python.jp/install/anaconda/windows/install.html
   Python:3.9.12
 
   Django:4.0.4
-
-
-
-テスト用ユーザ会員は新規登録しても良いですが、以下のテスト用がありますのでこちらを利用していただくと良いと思います。
-
-  ※テスト用アカウント
-
-  メルアド：hoge@gmail.com
-
-  パスワード：1234abcd
