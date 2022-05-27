@@ -1,0 +1,28 @@
+{% extends '../common/base/default.html' %}
+{% block title %}ログイン-{{ block.super }}{% endblock %}
+{% block description %}ログイン-{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="row">
+        <div class="col-md-12">
+        <h2>ログイン</h2>
+        <div><a class="nav-link" href="{% url "members:regist" %}">新規会員登録はこちら</a></div>
+        {% if err_msg %}<div class="alert alert-danger" role="alert">{{ err_msg }}</div>{% endif %}
+        <form class="" action="{% url "members:login" %}?url={{url}}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="{{ field.name }}">{{ field.label }}</label>
+            {% if field.name == "email" %}<input type="text"  value="{% if field.value != None %}{{ field.value }}{% endif %}" class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.email.errors }}
+            {% elif field.name == "password" %}<input type="password" class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.password.errors }}
+            {% endif %}
+        {% endfor %}
+        <button type="submit" class='btn btn-outline-primary'>ログイン</button>
+        </form>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

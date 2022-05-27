@@ -13,30 +13,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>投稿確認</h1>
+            <h2>投稿確認</h2>
             <div class="alert alert-info" role="alert">以下の内容で登録します</div>
             <div class="form-group row">
-                <div class="col-sm-1">雅号</div><div class="col-sm-11">{{ senryu_obj.name.value }}</div>
+                <div class="col-sm-2">雅号</div><div class="col-sm-10">{{ senryu_obj.name.value }}</div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-1">初句</div><div class="col-sm-11">{{ senryu_obj.ku1.value }}</div>
+                <div class="col-sm-2">初句</div><div class="col-sm-10">{{ senryu_obj.ku1.value }}</div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-1">二句</div><div class="col-sm-11">{{ senryu_obj.ku2.value}}</div>
+                <div class="col-sm-2">二句</div><div class="col-sm-10">{{ senryu_obj.ku2.value}}</div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-1">結句</div><div class="col-sm-11">{{ senryu_obj.ku3.value }}</div>
+                <div class="col-sm-2">結句</div><div class="col-sm-10">{{ senryu_obj.ku3.value }}</div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-1">コメント</div><div class="col-sm-11">{{ senryu_obj.comment.value|linebreaksbr }}</div>
+                <div class="col-sm-2">コメント</div><div class="col-sm-10">{{ senryu_obj.comment.value|linebreaksbr }}</div>
             </div>
             <form action='{% url "senryu:regist_complete" %}' method='post' class='form' id='form'>
             {% csrf_token %}
             {% for field in senryu_obj %}
             {{field.as_hidden}}
             {% endfor %}
-            <button type='submit' class='btn btn-outline-primary'>投稿</button>
-            <a href='#' class='btn btn-outline-secondary' onClick='back()'>戻る</a>
+            <div class="form-group row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10"><button type='submit' class='btn btn-outline-primary'>投稿</button>
+                <a href='#' class='btn btn-outline-secondary' onClick='back()'>戻る</a>
+                </div>
             </form>
         </div>
     </div>

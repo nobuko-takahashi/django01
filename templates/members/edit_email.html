@@ -1,0 +1,25 @@
+{% extends '../common/base/default.html' %}
+{% block title %}メールアドレス変更-{{ block.super }}{% endblock %}
+{% block description %}メールアドレス変更-{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" action="" method="post">
+            <h2>メールアドレス変更</h2>
+            {% if err_msg %}<div class="alert alert-danger" role="alert">{{ err_msg }}</div>{% endif %}
+            <form class="" action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label for="{{ field.name }}">{{ field.label }}</label>
+                {% if field.name == "email" %}<input class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.email.errors }}
+                {% elif field.name == "email2" %}<input class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.email2.errors }}
+                {% else %}
+                {% endif %}
+            {% endfor %}
+            <button type="submit" class='btn btn-outline-primary'>変更</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@
     <!--header navi-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">テスト</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,6 +24,22 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Top</a>
               </li>
+              {% if request.session.member %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "members:edit" %}">会員情報変更</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "members:logout" %}">ログアウト</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "members:login" %}">ログイン</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url "members:regist" %}">新規会員登録</a>
+              </li>
+              {% endif %}
+              <!--
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
@@ -41,11 +57,14 @@
               <li class="nav-item">
                 <a class="nav-link disabled">Disabled</a>
               </li>
+              -->
             </ul>
+            <!--
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+          -->
           </div>
         </div>
     </nav>
@@ -53,15 +72,21 @@
       <div class="row">
         <div class="col-md-2">
           <div class="d-flex flex-column align-items-stretch">
-            <div class="p-2 flex-fill">コンテンツが長めの<br>Flexアイテム1</div>
-            <div class="p-2 flex-fill">Flexアイテム2</div>
-            <div class="p-2 flex-fill">Flexアイテム3</div>
+            <div class="form-group row border border-secondary">
+            <div class="p-2 flex-fill">左ナビ</div>
+            <div class="p-2 flex-fill"><a class="nav-link" href="{% url "senryu:index" %}">みんなの川柳</a></div>
+            <div class="p-2 flex-fill"><a class="nav-link" href="/">Now Printing</a></div>
+            <div class="p-2 flex-fill"><a class="nav-link" href="/">Now Printing</a></div>
+            <!--<div class="p-2 flex-fill">コンテンツが長めの<br>Flexアイテム1</div>-->
+          </div>
           </div>
         </div>
         <div class="col-md-8">{% block content %}{% endblock %}</div>
         <div class="col-md-2">
         </div>
     <!--footer navi-->
-    <footer class="fixed-bottom navbar navbar-expand-lg navbar-light bg-light">© (株)ほげほげ</footer>
+    <br>
+    <br>
+    <footer class="fixed-bottom navbar navbar-expand-lg navbar-light bg-light">© (株)テスト</footer>
 </body>
 </html>

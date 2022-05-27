@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SenryuConfig(AppConfig):
+class MembersConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'senryu'
+    name = 'members'

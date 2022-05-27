@@ -6,8 +6,46 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div><img src="/static/donkey.jpg" with="50" height="50"></div>
+            <div>そんときフィーリング川柳</div>
         </div>
     </div>
+    <a class="nav-link" href="{% url "senryu:index" %}">
+    <div class="row">
+    <div class="form-group row border border-primary rounded-start rounded-end">
+        <div class="col-md-1">
+            <img src="/static/donkey.jpg" with="50" height="50">
+        </div>
+        <div class="col-md-11">
+            {% if senryu_random %}
+            {{ senryu_random.ku1 }}　{{ senryu_random.ku2 }}　{{ senryu_random.ku3 }}
+            {% else %}
+            なかった…(T_T)
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    </a>
+    <p></p>
+    <div class="row">
+        <div class="col-md-12">
+            <div>最新川柳</div>
+        </div>
+    </div>
+    <a class="nav-link" href="{% url "senryu:index" %}">
+    <div class="row">
+    <div class="form-group row border border-primary rounded-start rounded-end">
+        <div class="col-md-1">
+            <img src="/static/donkey.jpg" with="50" height="50">
+        </div>
+        <div class="col-md-11">
+            {% if senryu_new %}
+            {{ senryu_new.ku1 }}　{{ senryu_new.ku2 }}　{{ senryu_new.ku3 }}
+            {% else %}
+            なかった…(T_T)
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    </a>
  </div>
 {% endblock %}

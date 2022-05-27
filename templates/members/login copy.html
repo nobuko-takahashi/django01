@@ -1,0 +1,23 @@
+{% extends '../common/base/default.html' %}
+{% block title %}ログイン-{{ block.super }}{% endblock %}
+{% block description %}ログイン-{{ block.super }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <h2>ログイン</h2>
+    {% if err_msg %}<div class="alert alert-danger" role="alert">{{ err_msg }}</div>{% endif %}
+    <form class="" action="{% url "members:login" %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+        <label for="{{ field.name }}">{{ field.label }}</label>
+        {% elif field.name == "email" %}<input type="text"  value="{% if field.value != None %}{{ field.value }}{% endif %}" class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.email.errors }}
+        {% elif field.name == "password" %}<input type="password" class="form-control" name="{{ field.name }}" id="{{ field.name }}">{{ form.password.errors }}
+        {% endif %}
+    {% endfor %}
+    <button type="submit" class='btn btn-outline-primary'>確認</button>
+    </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

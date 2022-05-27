@@ -1,30 +1,17 @@
 from http.client import HTTPResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
 from .models import Senryu
 from .forms import SenryuRegist
-
 from django.utils import timezone
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from lib.members import Login
 
-'''def index(request):
-    name = 'Taro'
-    age = 20
-
-    senryu_list = Senryu.objects.filter(delete_flag__exact = False).order_by('-created')
-
-    return render(request, 'senryu/index.html',
-        context={'name' : name, 'age' : age, 'senryu_list' : senryu_list,}
-    )'''
+from pprint import pprint
 
 def index(request):
-    name = 'Taro'
-    age = 20
-
-    list = Senryu.objects.filter(delete_flag__exact = False).order_by('-created')
-    paginator = Paginator(list, 2)
+    list = Senryu.objects.filter(delete_flag = 0).order_by('-created')
+    paginator = Paginator(list, 5)
     page = request.GET.get('page', 1)
 
     try:
@@ -33,20 +20,22 @@ def index(request):
         pages = paginator.page(1)
     except EmptyPage:
         pages = paginator.page(1)
-    #context = {'pages': pages}
 
     return render(request, 'senryu/index.html',
-        context={'name' : name, 'age' : age, 'pages' : pages,}
+        context = {'pages' : pages,}
     )
 
 def regist(request):
+    url = Login.get_login_url(request)
+    if url:
+        return redirect(url)
+
     if request.method != 'POST':
         #フォームを変数にセット
         form = SenryuRegist()
     else:
         # 確認から戻ってきた場合
         form = SenryuRegist(request.POST)
-
     context = {'senryu_obj':form,}
     return render(request, 'senryu/regist.html', context)
 
@@ -76,7 +65,7 @@ def regist_complete(request):
         if senryu_obj.is_valid():
             # バリデーションOK
             Senryu.objects.create(
-                #uid = '',
+                uid = request.session['member'].id,
                 name = senryu_obj.cleaned_data['name'],
                 ku1 = senryu_obj.cleaned_data['ku1'],
                 ku2 = senryu_obj.cleaned_data['ku2'],

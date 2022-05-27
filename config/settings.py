@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'senryu.apps.SenryuConfig',
     'hello.apps.HelloConfig',
     'top.apps.TopConfig',
+    'members',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ STATICFILES_DIRS = [BASE_DIR / "static",]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# session
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
