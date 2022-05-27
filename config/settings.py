@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #追加
     'senryu.apps.SenryuConfig',
-    'hello.apps.HelloConfig',
     'top.apps.TopConfig',
     'members',
 ]
